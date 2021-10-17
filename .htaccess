@@ -1,0 +1,15 @@
+# BEGIN WordPress
+
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?seerafa\.com$
+RewriteRule ^/?api/(.*)$ http://api.seerafa/api/$1 [R=301]
+RewriteRule ^/?pg/(.*)$ http://api.seerafa/pg/$1 [R=301]
+
+# END WordPress
